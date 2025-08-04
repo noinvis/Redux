@@ -1,48 +1,31 @@
 import React from "react";
-import { Link, useRoutes } from "react-router-dom";
-import About from "./pages/about";
-import Home from "./pages/home";
+import { useRoutes } from "react-router-dom";
+import Layout from './pages/layout/Layout'
+import Home from './pages/home'
+import About from './pages/about'
+import NotFound from './pages/not-found/Notfound'
 
 const App = () => {
-
-  // const foo = (p) => {
-  //   let a = p
-  //   // code....
-  //   // code....
-  //   // code....
-  //   return {raducer, laylo, count, };
-  // };
-
-  // const b = foo({
-  //   name: "counter",
-  //   initialState: {
-  //     value: 1,
-  //   },
-  //   reducers: {
-  //     laylo: (state) => {
-  //       state.value = state.value + 1;
-  //     },
-  //   },
-  // });
-
-  // console.log(b);
-
-  return (
-    <>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      {useRoutes([
+  return useRoutes([
+    {
+      path: "/",
+      element: <Layout/>,
+      children: [
         {
-          path: "/",
-          element: <Home />,
+          index: true,
+          element: <Home/>,
         },
         {
           path: "/about",
           element: <About />,
         },
-      ])}
-    </>
-  );
+      ],
+    },
+    {
+      path: "*",
+      element: <NotFound />,
+    },
+  ]);
 };
 
 export default React.memo(App);
