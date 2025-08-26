@@ -14,6 +14,12 @@ export const counterSlice = createSlice({
       state.value = state.value.filter((item) => item.id !== action.payload.id);
       localStorage.setItem("users", JSON.stringify(state.value));
     },
+    updateUser: (state, action) => {
+      state.value = state.value.map((item) =>
+        item.id === action.payload.id ? { ...item, ...action.payload } : item
+      );
+      localStorage.setItem("users", JSON.stringify(state.value));
+    },
   },
 });
 
