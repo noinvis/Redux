@@ -19,6 +19,9 @@ const App = () => {
           path: "/about",
           element: <About />,
         },
+        {
+          path: "/edit/:id", element: <EditUser />,
+        },
       ],
     },
     {
